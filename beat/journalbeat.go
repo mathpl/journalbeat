@@ -24,7 +24,6 @@ import (
 	"github.com/elastic/beats/libbeat/common"
 	"github.com/elastic/beats/libbeat/logp"
 	"github.com/elastic/beats/libbeat/publisher"
-	"github.com/kr/pretty"
 	"github.com/mheese/go-systemd/sdjournal"
 )
 
@@ -285,9 +284,9 @@ func Publish(beat *beat.Beat, jb *Journalbeat) {
 		// do some conversion, etc.
 		m := MapStrFromJournalEntry(ev, jb.cleanFieldnames, jb.convertToNumbers)
 		fmt.Println("BEFORE")
-		pretty.Printf("%+v\n", jb.addFields)
+		fmt.Printf("%+v\n", jb.addFields)
 		fmt.Println("BEFORE msg")
-		pretty.Printf("%+v\n", m)
+		fmt.Printf("%+v\n", m)
 		m.Update(jb.addFields)
 		fmt.Println("AFTER mad")
 		fmt.Printf("%+v\n", m)
