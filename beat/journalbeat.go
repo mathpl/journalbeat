@@ -285,12 +285,12 @@ func Publish(beat *beat.Beat, jb *Journalbeat) {
 		// do some conversion, etc.
 		m := MapStrFromJournalEntry(ev, jb.cleanFieldnames, jb.convertToNumbers)
 		fmt.Println("BEFORE")
-		pretty.Println(jb.addFields)
+		pretty.Printf("%+v\n", jb.addFields)
 		fmt.Println("BEFORE msg")
-		pretty.Println(m)
+		pretty.Printf("%+v\n", m)
 		m.Update(jb.addFields)
 		fmt.Println("AFTER mad")
-		pretty.Println(m)
+		fmt.Printf("%+v\n", m)
 		if jb.moveMetadataLocation != "" {
 			m = MapStrMoveJournalMetadata(m, jb.moveMetadataLocation)
 		}
