@@ -18,6 +18,8 @@ input:
   convert_to_numbers: false
   move_metadata_to_field: journal
   #default_type: journal
+  #add_fields:
+  #  dc: nyc
 output:
   console:
     pretty: true

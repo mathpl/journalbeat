@@ -24,6 +24,7 @@ import (
 	"github.com/elastic/beats/libbeat/common"
 	"github.com/elastic/beats/libbeat/logp"
 	"github.com/elastic/beats/libbeat/publisher"
+	"github.com/kr/pretty"
 	"github.com/mheese/go-systemd/sdjournal"
 )
 
@@ -283,7 +284,13 @@ func Publish(beat *beat.Beat, jb *Journalbeat) {
 
 		// do some conversion, etc.
 		m := MapStrFromJournalEntry(ev, jb.cleanFieldnames, jb.convertToNumbers)
+		fmt.Println("BEFORE")
+		pretty.Println(jb.addFields)
+		fmt.Println("BEFORE msg")
+		pretty.Println(m)
 		m.Update(jb.addFields)
+		fmt.Println("AFTER mad")
+		pretty.Println(m)
 		if jb.moveMetadataLocation != "" {
 			m = MapStrMoveJournalMetadata(m, jb.moveMetadataLocation)
 		}
